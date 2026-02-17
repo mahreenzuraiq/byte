@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+    <title>BYTE | Welcome</title>
+</head>
+<body class="striped-bg">
+    <div class="hero-section">
+        <div class="hero-content" style="max-width: 750px; width: 100%;">
+            
+            <div class="logo-wrapper">
+                <img src="/templates/byte.png" alt="BYTE Logo" class="home-logo">
+            </div>
+            
+            <p class="tagline">Savor every BYTE. Hot, fresh, and delivered fast.</p>
+            
+            <div class="auth-container">
+                <div class="auth-box border-right">
+                    <h3 style="color: #0d47a1;">Existing User?</h3>
+                    <p class="sub-text">Login to your account.</p>
+                    <form action="/login" method="POST" class="styled-form">
+                        <input type="text" name="phone" placeholder="Mobile Number" required>
+                        <button type="submit" class="btn">Login</button>
+                    </form>
+                </div>
+                
+                <div class="auth-box">
+                    <h3 style="color: #0d47a1;">New User?</h3>
+                    <p class="sub-text">Create a quick account.</p>
+                    <form action="/signup" method="POST" class="styled-form">
+                        <input type="text" name="name" placeholder="Full Name" required>
+                        <input type="text" name="phone" placeholder="Mobile Number" required>
+                        <button type="submit" class="btn signup-btn">Sign Up</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+</html>

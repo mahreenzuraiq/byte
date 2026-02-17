@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+    <title>BYTE | Checkout</title>
+</head>
+<body class="striped-bg">
+    <nav class="navbar"><div class="logo">BYTE</div></nav>
+    <div class="payment-card">
+        <h2>Checkout - ₹{{ total }}</h2>
+        <form action="/process_payment" method="POST">
+            <input type="hidden" name="cart_data" value="{{ cart_data }}">
+            <input type="hidden" name="total_amount" value="{{ total }}">
+
+            <label>Payment Method:</label>
+            <div class="pay-options">
+                <input type="radio" name="payment_mode" value="Card" onclick="showPay('card')" checked> Card
+                <input type="radio" name="payment_mode" value="UPI" onclick="showPay('upi')"> UPI
+                <input type="radio" name="payment_mode" value="COD" onclick="showPay('cod')"> COD
+            </div>
+
+            <div id="card-div" class="pay-detail">
+                <input type="text" placeholder="Card Number (XXXX-XXXX-XXXX-XXXX)" required>
+                <div style="display: flex; gap: 10px;">
+                    <input type="text" placeholder="MM/YY" required>
+                    <input type="password" placeholder="CVV" required>
+                </div>
+            </div>
+
+            <div id="upi-div" class="pay-detail" style="display:none; text-align:center;">
+                <p style="font-weight:bold; margin-bottom: 10px;">Scan to Pay</p>
+                <img src="/templates/upi_qr.jpg" alt="UPI QR Code" style="width: 150px; height: 150px; border-radius: 8px; box-shadow: 0 4px 8px rgba(0,0,0,0.1);">
+                <p style="font-size: 0.8rem; color: #666; margin-top: 10px;">UPI ID: byte@sctce</p>
+            </div>
+
+            <div id="cod-div" class="pay-detail" style="display:none;">
+                <p>Pay with cash when your food arrives.</p>
+            </div>
+
+            <button type="submit" class="btn pay-btn">Confirm Order & Pay</button>
+        </form>
+    </div>
+
+    <script>
+        function showPay(mode) {
+            document.getElementById('card-div').style.display = (mode === 'card') ? 'block' : 'none';
+            document.getElementById('upi-div').style.display = (mode === 'upi') ? 'block' : 'none';
+            document.getElementById('cod-div').style.display = (mode === 'cod') ? 'block' : 'none';
+            
+            const cardInputs = document.querySelectorAll('#card-div input');
+            cardInputs.forEach(input => input.required = (mode === 'card'));
+        }
+    </script>
+</body>
+</html>

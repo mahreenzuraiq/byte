@@ -1,0 +1,107 @@
+/* Striped Background Logic */
+body.striped-bg { 
+    font-family: 'Inter', 'Segoe UI', sans-serif; 
+    background: repeating-linear-gradient(
+        45deg,
+        #f4f9fd,
+        #f4f9fd 15px,
+        #ffffff 15px,
+        #ffffff 30px
+    );
+    color: #0d47a1; 
+    margin: 0; 
+    min-height: 100vh;
+}
+
+.navbar { background-color: #1565c0; padding: 15px 40px; color: white; display: flex; justify-content: space-between; align-items: center; box-shadow: 0 4px 15px rgba(0,0,0,0.1); position: sticky; top: 0; z-index: 100;}
+.logo { font-size: 2rem; font-weight: 900; letter-spacing: 3px; }
+
+/* Home Section - UPGRADED DESIGN */
+.hero-section { display: flex; align-items: center; justify-content: center; height: 100vh; }
+.hero-content { 
+    background: white; 
+    padding: 50px 40px; 
+    border-radius: 20px; 
+    box-shadow: 0 15px 35px rgba(21, 101, 192, 0.12); 
+    text-align: center; 
+    border-top: 6px solid #1e88e5; /* Added a sleek blue accent line at the top */
+}
+
+/* The new soft box behind your logo */
+.logo-wrapper {
+    display: inline-block;
+    background: linear-gradient(135deg, #ffffff, #f0f8ff);
+    padding: 25px 45px;
+    border-radius: 35px;
+    border: 2px solid #e3f2fd;
+    box-shadow: 
+        0 15px 35px rgba(21, 101, 192, 0.1), /* Deep drop shadow */
+        0 0 30px rgba(30, 136, 229, 0.15);   /* Soft blue glowing aura */
+    margin-bottom: 25px;
+    animation: float 4s ease-in-out infinite; /* Triggers the hover animation */
+}
+
+
+.home-logo { 
+    width: 170px; 
+    display: block; 
+    margin: 0 auto; 
+    /* This makes the blue letters themselves pop off the white background */
+    filter: drop-shadow(0 4px 6px rgba(13, 71, 161, 0.3)); 
+}
+
+/* The appetizing gradient tagline */
+.tagline { 
+    font-weight: 900; 
+    font-size: 1.4rem; 
+    background: linear-gradient(45deg, #0d47a1, #1e88e5);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    margin-bottom: 35px;
+    letter-spacing: -0.5px;
+}
+.sub-text { font-size: 0.95rem; color: #666; margin-bottom: 20px; }
+
+/* Auth Boxes */
+.auth-container { display: flex; gap: 30px; text-align: left; }
+.auth-box { flex: 1; padding: 10px 20px; }
+.border-right { border-right: 2px dashed #bbdefb; }
+.styled-form input { display: block; width: 100%; padding: 12px 15px; margin: 12px 0; border: 1px solid #bbdefb; border-radius: 8px; box-sizing: border-box; font-size: 1rem; transition: 0.3s; background-color: #fafcfd; }
+.styled-form input:focus { border-color: #1e88e5; outline: none; box-shadow: 0 0 8px rgba(30,136,229,0.2); background-color: white; }
+
+/* (Keep the rest of your CSS from Menu Layout downwards exactly the same) */   
+/* Menu Layout */
+.layout { display: flex; gap: 25px; padding: 30px; max-width: 1200px; margin: auto; }
+.menu-container { flex: 3; display: flex; flex-wrap: wrap; gap: 25px; justify-content: center; }
+
+/* Food Cards - MODERN LOOK */
+.card { background: white; border-radius: 16px; width: 240px; box-shadow: 0 8px 20px rgba(0,0,0,0.06); overflow: hidden; display: flex; flex-direction: column; transition: transform 0.2s; }
+.card:hover { transform: translateY(-5px); box-shadow: 0 12px 25px rgba(21,101,192,0.15); }
+.food-img { width: 100%; height: 160px; object-fit: cover; }
+.card-content { padding: 15px; display: flex; flex-direction: column; flex: 1; }
+.card-content h3 { margin: 0 0 10px 0; font-size: 1.1rem; color: #0d47a1; }
+.food-desc { font-size: 0.85rem; color: #555; flex: 1; margin: 0 0 15px 0; }
+.price { font-weight: 900; color: #1e88e5; font-size: 1.3rem; margin-bottom: 10px; }
+
+/* Cart Styling */
+.cart-container { flex: 1; background: white; padding: 25px; border-radius: 16px; height: fit-content; box-shadow: 0 8px 20px rgba(0,0,0,0.08); position: sticky; top: 90px;}
+.cart-li { display: flex; justify-content: space-between; padding: 10px 0; border-bottom: 1px solid #eee; font-size: 0.9rem; }
+.cart-price { font-weight: bold; color: #43a047; }
+.total-text { margin-top: 20px; font-size: 1.5rem; border-top: 2px dashed #bbdefb; padding-top: 15px; color: #1565c0;}
+
+/* Payment & Review Cards */
+.payment-card { background: white; width: 450px; margin: 60px auto; padding: 40px; border-radius: 20px; box-shadow: 0 12px 30px rgba(21,101,192,0.15); }
+.review-table { width: 100%; border-collapse: collapse; margin-top: 15px; font-size: 0.95rem; }
+.review-table th { background: #f4f9fd; color: #1565c0; padding: 12px; text-align: left; }
+.review-table td { border-bottom: 1px solid #e3f2fd; padding: 12px; }
+.pay-options { margin: 20px 0; font-weight: bold; display: flex; gap: 15px; }
+.pay-detail { margin: 20px 0; padding: 20px; background: #f8fbff; border-radius: 12px; border: 1px solid #e3f2fd; }
+.pay-detail input { width: 100%; padding: 10px; margin-bottom: 10px; border: 1px solid #bbdefb; border-radius: 6px; box-sizing: border-box; }
+
+/* Buttons */
+.btn { background: #1e88e5; color: white; border: none; padding: 12px 25px; border-radius: 8px; cursor: pointer; font-weight: bold; width: 100%; transition: 0.2s; font-size: 1rem; }
+.btn:hover { background: #1565c0; }
+.signup-btn { background: #43a047; }
+.signup-btn:hover { background: #2e7d32; }
+.pay-btn { background: #43a047; margin-top: 15px; font-size: 1.1rem; padding: 15px;}
+.pay-btn:hover { background: #2e7d32; }

@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+    <title>BYTE | Review Order</title>
+</head>
+<body class="striped-bg">
+    <nav class="navbar"><div class="logo">BYTE</div></nav>
+    
+    <div style="display: flex; gap: 20px; max-width: 900px; margin: 40px auto; align-items: flex-start;">
+        
+        <div class="payment-card" style="margin: 0; flex: 1.2;">
+            <h2 style="color: #0d47a1; margin-bottom: 20px;">Order Summary</h2>
+            <table class="review-table">
+                <tr>
+                    <th>Item</th>
+                    <th style="text-align: center;">Qty</th>
+                    <th style="text-align: right;">Subtotal</th>
+                </tr>
+                {% for item in cart_items %}
+                <tr>
+                    <td>{{ item.name }}</td>
+                    <td style="text-align: center;">{{ item.quantity }}</td>
+                    <td style="text-align: right;">₹{{ item.price * item.quantity }}</td>
+                </tr>
+                {% endfor %}
+            </table>
+            <h3 style="text-align: right; margin-top: 20px; color: #1565c0;">Grand Total: ₹{{ total }}</h3>
+        </div>
+
+        <div class="payment-card" style="margin: 0; flex: 1;">
+            <h2 style="color: #0d47a1; margin-bottom: 10px;">Delivery Details</h2>
+            <p style="font-size: 0.9rem; color: #666; margin-bottom: 20px;">Confirm or update your address.</p>
+            
+            <form action="/payment" method="POST" class="styled-form">
+                <input type="hidden" name="cart_data" value="{{ cart_data_raw }}">
+                <input type="hidden" name="total_amount" value="{{ total }}">
+                
+                <label style="font-size: 0.85rem; font-weight: bold; color: #1e88e5;">Name</label>
+                <input type="text" value="{{ customer.name }}" readonly style="background-color: #f4f9fd; color: #888; cursor: not-allowed;">
+                
+                <label style="font-size: 0.85rem; font-weight: bold; color: #1e88e5;">Phone</label>
+                <input type="text" value="{{ customer.phone }}" readonly style="background-color: #f4f9fd; color: #888; cursor: not-allowed;">
+                
+                <label style="font-size: 0.85rem; font-weight: bold; color: #1e88e5;">Street / Block</label>
+                <input type="text" name="street" value="{{ customer.street }}" placeholder="Enter Street or Block" required>
+                
+                <label style="font-size: 0.85rem; font-weight: bold; color: #1e88e5;">City</label>
+                <input type="text" name="city" value="{{ customer.city }}" placeholder="Enter City" required>
+                
+                <div style="display: flex; gap: 10px; margin-top: 20px;">
+                    <a href="/menu" class="btn" style="background: #ef5350; text-align: center; flex: 1; text-decoration: none; box-sizing: border-box;">Back</a>
+                    <button type="submit" class="btn" style="background: #43a047; flex: 1;">Proceed to Pay</button>
+                </div>
+            </form>
+        </div>
+
+    </div>
+</body>
+</html>

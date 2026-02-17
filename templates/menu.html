@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+    <title>BYTE Menu</title>
+</head>
+<body class="striped-bg">
+    <nav class="navbar">
+        <div class="logo">BYTE</div>
+        <span style="color:white; font-weight:bold;">Welcome, {{ session['customer_name'] }}</span>
+    </nav>
+    <div class="layout">
+        <div class="menu-container">
+            {% for food in foods %}
+            <div class="card">
+                <img src="{{ food.image_url }}" alt="{{ food.item_name }}" class="food-img">
+                <div class="card-content">
+                    <h3>{{ food.item_name }}</h3>
+                    <p class="food-desc">{{ food.description }}</p>
+                    <span class="price">₹{{ food.price }}</span>
+                    <button class="btn add-btn" onclick="addToCart({{ food.item_id }}, '{{ food.item_name }}', {{ food.price }})">Add to Cart</button>
+                </div>
+            </div>
+            {% endfor %}
+        </div>
+        <div class="cart-container">
+            <h2>Your Cart</h2>
+            <ul id="cart-items"></ul>
+            <h3 class="total-text">Total: ₹<span id="cart-total">0</span></h3>
+            <form action="/review" method="POST" id="checkout-form">
+                <input type="hidden" name="cart_data" id="cart_data">
+                <input type="hidden" name="total_amount" id="total_amount">
+                <button type="submit" class="btn checkout-btn" onclick="prepareCheckout(event)">Review Order</button>
+            </form>
+        </div>
+    </div>
+    
+    <script>
+        let cart = [];
+        function addToCart(id, name, price) {
+            let item = cart.find(i => i.id === id);
+            if (item) item.quantity++;
+            else cart.push({ id, name, price, quantity: 1 });
+            updateUI();
+        }
+        function updateUI() {
+            let list = document.getElementById('cart-items');
+            let total = 0;
+            list.innerHTML = '';
+            cart.forEach(i => {
+                total += i.price * i.quantity;
+                list.innerHTML += `<li class="cart-li"><span>${i.name} (x${i.quantity})</span> <span class="cart-price">₹${i.price * i.quantity}</span></li>`;
+            });
+            document.getElementById('cart-total').innerText = total;
+        }
+        function prepareCheckout(e) {
+            if (cart.length === 0) { alert("Cart empty!"); e.preventDefault(); return; }
+            document.getElementById('cart_data').value = JSON.stringify(cart);
+            document.getElementById('total_amount').value = document.getElementById('cart-total').innerText;
+        }
+    </script>
+</body>
+</html>
