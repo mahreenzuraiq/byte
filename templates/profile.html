@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+    <title>BYTE | My Profile</title>
+</head>
+<body class="striped-bg">
+    <nav class="navbar">
+        <div class="logo">BYTE</div>
+        <div>
+            <a href="/menu" style="color: white; text-decoration: none; margin-right: 20px; font-weight: bold;">Menu</a>
+        </div>
+    </nav>
+    
+    <div class="hero-section" style="height: 80vh;">
+        <div class="hero-content" style="max-width: 500px; width: 100%; text-align: left;">
+            <h2 style="color: #0d47a1; border-bottom: 2px solid #bbdefb; padding-bottom: 10px;">User Profile</h2>
+            
+            <div style="margin-top: 20px; font-size: 1.1rem; color: #333;">
+                <p><strong style="color: #1e88e5;">Name:</strong> {{ customer.name }}</p>
+                <p><strong style="color: #1e88e5;">Phone Number:</strong> {{ customer.phone }}</p>
+                <p><strong style="color: #1e88e5;">Street/Block:</strong> {{ customer.street }}</p>
+                <p><strong style="color: #1e88e5;">City:</strong> {{ customer.city }}</p>
+            </div>
+            
+            <a href="/menu" class="btn" style="display: block; text-align: center; margin-top: 30px; text-decoration: none;">Back to Menu</a>
+        </div>
+    </div>
+</body>
+</html>
